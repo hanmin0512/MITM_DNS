@@ -24,6 +24,8 @@ def dongguk_view(request):
                 user.save()
                 print("insert database")
                 return redirect('success')
+            form = LoginForm()
+            return render(request, 'dongguk.html', {'form': form})
     else:
         form = LoginForm()
     return render(request, 'dongguk.html', {'form': form})
