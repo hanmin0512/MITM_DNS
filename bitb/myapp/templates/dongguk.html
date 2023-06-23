@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wise 캠퍼스 로그인</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+	  {% load static %}
+	  <img src="{% static '/donggukLogo.png' %}" width="90%" >
+	  <h1>Wise 캠퍼스 로그인</h1>
+ <form method="POST" action="{% url 'dongguk' %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="userID">아이디</label>
+    {{ form.userID }}
+  </div>
+  <div class="form-group">
+    <label for="userPW">비밀번호</label>
+    {{ form.userPW }}
+  </div>
+  <div class="form-group">
+    <button type="submit">로그인</button>
+  </div>
+</form>
+  </div>
+</body>
+</html>
+

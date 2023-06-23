@@ -1,0 +1,1281 @@
+<html xml:lang="ko-kr" lang="ko-kr" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="author" content="메디오피아테크">
+<meta name="description" content="동국대학교 WISE캠퍼스 e-Class입니다.">
+<meta name="keywords" content="동국대학교 WISE캠퍼스, e-Class">
+<title>동국대학교 이클래스</title>
+
+
+<!-- Stylesheets -->
+<!-- 기본 -->
+<link rel="shortcut icon" href="/lmsdata/img/common/favicon.ico">
+
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/template_common.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/template1_basic.css?ver=2">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/content.css?ver=1">
+
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/icon_button.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/board.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/paginator3000.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/jquery.custombox.css">
+
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/selectbox.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/template1_tablet.css" media="all and (max-width: 980px)">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/font-awesome.min.css ">
+<link rel="stylesheet" type="text/css" href="/lmsdata/css/front_basic.css">
+
+<style>
+	/* 메인 레이어 팝업 CSS */
+	.popup-wrap {display: flex; align-items: center; justify-content: center; position: absolute; top: 0px; left: 0px; right: 0px; height: 100vh; z-index: 9999;}
+	.popup-wrap img {width:290px !important; height: 320px !important;} 
+	.popup-wrap .inner-box {position: relative; max-width: 1200px; opacity: 1; z-index: 1;} 
+	.popup-wrap .inner-box .head-box {display: flex; align-items: center; padding-bottom: 10px;}
+	.popup-wrap .inner-box .head-box a {display: inline-block; margin-left: auto; padding: 5px 20px; font-size: 15px; color: #fff; text-align: center; border: 2px solid #fff; border-radius: 24px;}
+	.popup-wrap .inner-box .head-box a:after {content: ''; display: inline-block; width: 12px; height: 12px; margin-left: 5px; vertical-align: middle; background: url(/lmsdata/img/template1/inbox_close.png) no-repeat;}
+	.popup-wrap .inner-box .head-box a:last-child {margin-left: 10px;}
+	.popup-wrap .inner-box ul li {text-align: center;}
+	.popup-wrap .overlay {position: fixed; left: 0; top: 0; right: 0; bottom: 0; min-width: 100%; min-height: 100%; background: rgba(0, 0, 0, 0.7);}
+	.popup-wrap .bx-pager {margin-top: 10px; text-align: center;}
+	.popup-wrap .bx-pager .bx-pager-item {display: inline-block;}
+	.popup-wrap .bx-pager .bx-pager-item a {display: inline-block; margin: 5px; width: 32px; height: 32px; line-height: 32px; text-align: center; color: #fff; border-radius: 100%; background: #999;}
+	.popup-wrap .bx-pager .bx-pager-item a.active {background: #3d5595;}
+	.popup-wrap .bx-wrapper .bx-controls-direction a {position: absolute; top: 50%; margin-top: -30px; outline: 0; width: 60px; height: 60px; text-indent: -9999px;}
+	.popup-wrap .bx-wrapper .bx-prev {left: -60px; background: url(/lmsdata/img/template1/popup_arrow_left.png) no-repeat;}
+	.popup-wrap .bx-wrapper .bx-next {right: -60px; background: url(/lmsdata/img/template1/popup_arrow_right.png) no-repeat;}
+</style>
+
+
+
+
+
+<!-- Scripts -->
+
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/common_util.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery-1.11.1.min.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery-ui.min.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/common.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/paginator3000.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.easing.1.3.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.cycle.all.js"></script>
+
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/popupbox.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/message_box.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/daterangepicker.jQuery.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/date.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery-ui.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.selectbox-min.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.custombox.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.bxslider.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/slidebars.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/classie.js"></script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/common_shortcuts.js"></script>
+
+
+<script language="javascript">
+
+
+//<![CDATA[
+ var commonResultMessage = "null";
+if(commonResultMessage=="" || commonResultMessage=="null") {
+	commonResultMessage = "null";
+}else{
+	alert(commonResultMessage);
+}
+
+function bluring(){ 
+if(event.srcElement.tagName=="A"||event.srcElement.tagName=="IMG") document.body.focus();} 
+document.onfocusin=bluring;
+
+
+function addLoadEvent(func){
+    var oldonload = window.onload;
+    if(typeof window.onload != 'function'){
+        window.onload = func;
+    }else{
+        window.onload = function(){
+            oldonload();
+            func();
+        };
+    }
+
+}
+
+addLoadEvent(getLogin);
+
+
+function saveLogin(){
+	var f = document.getElementById("loginForm");
+	if(!validate(f)) return;
+	
+	var id = f.userId;
+	if(id.value == "")	{
+		alert("ID를 입력하세요"); 
+		return false;
+	}
+	
+	var pw = f["password"];
+	if(pw.value == "")	{
+		alert("비밀번호를 입력하세요"); 
+		return false;
+	}
+	
+	 if(document.getElementById("idcheck").checked){
+
+		 saveLoginId(document.getElementById("id").value);
+
+	 }else{ 
+
+		 saveLoginId("");
+	 }
+	f.submit();
+	
+}
+
+
+
+//ID저장
+function saveId(checkbox){
+	var isRemember;
+	
+	if(checkbox.checked){
+		isRemember = confirm("이 PC에 로그인 정보를 저장하시겠습니까? \n PC방등의 공공장소에서는 개인정보가 유출될 수 있으니 주의해주십시오.");
+		if(isRemember == true){
+			  saveLoginId(document.getElementById("id").value);
+		}
+	if(!isRemember)
+		checkbox.checked = false;
+	}else{
+		saveLoginId("");
+	}
+}	
+
+function setsave(name, value, expiredays){
+	var today = new Date();
+	today.setDate( today.getDate() + expiredays );
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + today.toGMTString() + ";"
+}
+
+function getLogin(){
+	 // userid 쿠키에서 id 값을 가져온다.
+   var cook = document.cookie + ";";
+   var idx = cook.indexOf("userid", 0);
+   var val = "";
+   if (idx != -1) {
+       cook = cook.substring(idx, cook.length);
+       begin = cook.indexOf("=", 0) + 1;
+       end = cook.indexOf(";", begin);
+       val = unescape(cook.substring(begin, end));
+   }
+
+   // 가져온 쿠키값이 있으면
+   if (val != "") {
+       document.getElementById("id").value = val;
+       
+       var chkbox = document.getElementsByName("idcheck");
+       var chkboxLen = chkbox.length; 
+       
+       
+       for(var i=0;i < chkboxLen ; i++){ 
+    	   chkbox[i].checked = true; 
+        } 
+       window.onload = checked; 
+   }
+}
+
+function saveLoginId(id){
+	if(id != ""){
+	// userid 쿠키에 id 값을 7일간 저장
+		setsave("userid", id, 7);
+	}else{
+	// userid 쿠키 삭제
+		setsave("userid", id, -1);
+	}
+}
+function moveSubMenu(obj, url) {
+		
+		var naviValue = " &gt; ";
+		alert('');
+		$("mainNaviBar").innerHTML = naviValue + obj.innerHTML;
+		$("bodyFrame").src = url;
+		return false;
+	}
+	
+//]]>
+
+</script>
+
+
+<!--[if lt IE 9]> 
+<![endif]--> 
+<link rel="preconnect" href="https://fonts.gstatic.com"><link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"><link rel="preconnect" href="https://fonts.gstatic.com"><link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"><style id="data-spinner-style">
+body.unselectable {
+	-webkit-user-select: none;	-moz-user-select: none;	-ms-user-select: none;	-o-user-select: none;	user-select: none;
+}
+[data-spinner-layer] {
+	display: none; position: fixed; top: 0; left: 0;	background: rgba(255,255,255,0.5);	width: 100%; height: 100%; padding: 0; margin: 0;
+	z-index: 99999999;
+}
+[data-spinner-bar] {
+	color: black;	position: absolute; top: calc(50% - 30px); left: calc(50% - 15px); font-weight: bold; font-size: 40px;	-webkit-animation: data-spinner 2s linear infinite; -moz-animation: data-spinner 2s linear infinite; animation: data-spinner 2s linear infinite;
+}
+	@-moz-keyframes data-spinner {100% {-moz-transform: rotate(360deg); transform: rotate(360deg);}}
+	@-webkit-keyframes data-spinner {100% {-webkit-transform: rotate(360deg); transform: rotate(360deg);}}
+	@keyframes data-spinner {100% {-webkit-transform: rotate(360deg); transform: rotate(360deg);}}
+</style><img width="1" height="1" src="https://nf.dongguk.edu:443/ne.nfl?ridx=11&amp;onload_id=1687428287232-147598236488311400&amp;category=browser&amp;pr=0&amp;pa=60&amp;pl=26&amp;pc=679&amp;ps=242&amp;pv=201&amp;pd=16299&amp;po=13&amp;pt=17520&amp;rr=https%3A%2F%2Feclass.dongguk.ac.kr%2FMain.do%3Fcmd%3DviewHome&amp;referrer=&amp;lang=en-US&amp;c=&amp;ss=&amp;os=linux&amp;osg=linux&amp;osv=&amp;arch=64&amp;wb=chrome&amp;wbv=114.0.5735.106&amp;wbg=chrome&amp;le=blink&amp;leg=blink&amp;ddg=pc&amp;dd=pc&amp;browsing_type=B&amp;t=service_3&amp;v=1.5.16&amp;cv=0.4&amp;txid=1687428287232-147598236488311400&amp;user_end_time=1687428277825&amp;1687428295395" style="left: 0px; position: absolute; display: none;"><img width="1" height="1" src="https://nf.dongguk.edu:443/ne.nfl?ridx=11&amp;onload_id=1687428287254-147627290651316320&amp;category=browser&amp;pr=0&amp;pa=60&amp;pl=26&amp;pc=679&amp;ps=242&amp;pv=201&amp;pd=16299&amp;po=13&amp;pt=17520&amp;rr=https%3A%2F%2Feclass.dongguk.ac.kr%2FMain.do%3Fcmd%3DviewHome&amp;referrer=&amp;lang=en-US&amp;c=&amp;ss=&amp;os=linux&amp;osg=linux&amp;osv=&amp;arch=64&amp;wb=chrome&amp;wbv=114.0.5735.106&amp;wbg=chrome&amp;le=blink&amp;leg=blink&amp;ddg=pc&amp;dd=pc&amp;browsing_type=B&amp;t=service_3&amp;v=1.5.16&amp;cv=0.4&amp;txid=1687428287254-147627290651316320&amp;user_end_time=1687428277825&amp;1687428295396" style="left: 0px; position: absolute; display: none;"><script src="https://nf.dongguk.edu:443/ts.wseq?opcode=5101&amp;nfid=0&amp;prefix=NetFunnel.gRtype=5101;&amp;sid=service_3&amp;aid=act_2&amp;js=yes&amp;1687428295608"></script></head>
+<body class="cbp-spmenu-push unselectable">
+<div id="Cover">
+	<button class="active" id="showRightPush"><i class="fa fa-bars" title="메뉴"></i></button>
+	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+		<ul class="mobile-util">
+			<li><a href="#">HOME</a></li>
+			<li><a href="#">동국대학교 WISE캠퍼스</a></li>
+		</ul>
+		<div id="mobile-menu">
+			<ul class="menu-list"> 
+<li class=""> 
+<a href="#"><span> <i class="icon-user-white"></i>커뮤니티</span></a> 
+<div class="twoDep">  
+<ul>  
+<li><a href="/Board.do?cmd=viewBoardContentsList&amp;boardInfoDTO.boardInfoId=BOAD_SYSTEM_NOTICE&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00041">공지사항</a></li> 
+<li><a href="/Board.do?cmd=viewBoardContentsList&amp;boardInfoDTO.boardInfoId=BOAD_SYSTEM_QNA&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00041">질의응답</a></li> 
+<li><a href="/Main.do?cmd=moveMenu&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00215">FAQ</a></li><li><a href="http://113366.com/dgucom" target="_blank">원격지원</a></li> 
+</ul> 
+</div> 
+<img src="/lmsdata/img/ko/template1/m_gnb_down.png" class="icon" alt=""></li> 
+<li class=""> 
+<a href="#"><span> <i class="icon-book-white"></i>비교과</span></a> 
+<div class="twoDep">  
+<ul>  
+<li><a href="/Main.do?cmd=moveMenu&amp;mainDTO.parentMenuId=menu_00236&amp;mainDTO.menuId=menu_00237">비교과개설현황</a></li> 
+</ul> 
+</div> 
+<img src="/lmsdata/img/ko/template1/m_gnb_down.png" class="icon" alt=""></li> 
+<li class=""> 
+<a href="#"><span> <i class="icon-book-white"></i>공개강의</span></a> 
+<div class="twoDep">  
+<ul>  
+<li><a href="http://www.kmooc.kr/" target="_blank">KMOOC</a></li> 
+</ul> 
+</div> 
+<img src="/lmsdata/img/ko/template1/m_gnb_down.png" class="icon" alt=""></li> 
+</ul> 
+
+		</div>
+	</nav> 
+	<!-- Header 영역 부분 -->
+	
+	<div id="header">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.cookie = 'mediLoginCheck=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+</script>
+
+
+<script type="text/javascript">
+	var commonResultMessage = "null";
+	if(commonResultMessage=="" || commonResultMessage=="null") {
+		commonResultMessage = "null";
+	}
+	var localeKey = "ko";
+</script>
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.custombox.js"></script>
+
+
+<script type="text/javascript" src="/lmsdata/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="/lmsdata/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="/lmsdata/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="/lmsdata/js/rsa/rng.js"></script>
+
+<script type="text/javascript" src="/lmsdata/js/netfunnel.js?ver=1" charset="UTF-8"></script>
+<script type="text/javascript" src="/lmsdata/js/test_skin.js" charset="UTF-8"></script>
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		if(checkBrowserType_New().indexOf("msie") > -1){
+			$(".authen").show();
+		}else{
+			$(".authen").hide();
+		}
+		
+	});
+	function CheckAX()
+	{
+		var Installed = false;
+		// AxKSignCASE 프로젝트 일때
+		var KSIGNActiveXProgID = "AxDongguk.AxDongguk.1"
+		
+		try
+		{
+			var xObj = new ActiveXObject(KSIGNActiveXProgID);
+		
+			if(xObj){
+				Installed = true;
+			}
+			else
+			{
+				Installed = false;
+			}
+		}
+		catch(ex)
+		{
+			Installed = false;
+		}
+		
+		return Installed;
+	} 
+	
+	function LoginData2()
+	{	
+
+		var f = document.signedData;		
+		
+		var dn;
+		var signeddata;
+		
+		if(!CheckAX()) {
+			alert("클라이언트 프로그램이 설치되지 않아 수행할 수 없습니다.");
+			return;
+		}
+		
+		dn = document.AxKCASE.ComSelectCert();
+		if ((dn == null) || (dn == ""))
+		{
+			if(document.AxKCASE.ComGetErrorCode() != -1)
+				alert(document.AxKCASE.ComGetErrorContent());
+			return;
+		}
+	
+		signeddata = document.AxKCASE.ComSignedData(dn, "",dn);
+		if( signeddata == null || signeddata == "" )
+		{
+			errmsg = document.AxKCASE.ComGetErrorContent();
+			errcode = document.AxKCASE.ComGetErrorCode();
+			alert( "인증서 로그인 오류 :"+errmsg );
+			return;
+		}
+		
+		f.signed_data.value = signeddata;
+		f.submit();
+		
+	}
+
+	function saveLogin() {
+		var f = document.userForm;
+		validate(f);
+		var textVal = document.getElementById("userId").value;
+		var checkBox = document.getElementById("mLgIdS");		
+		if(checkBox.checked == true) {
+			setSave("uid", textVal, 30);
+		} else if(checkBox.checked == false) {
+			setSave("uid", textVal, -1);
+		}
+
+		// 입력정보 암호화(RSA)
+		var secureStatus = false;
+		jQuery.ajax({
+			url : "/User.do?cmd=getRsaPublicKey",
+			dataType: "json",
+			async : false,
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			success : function(rsaData, status, xhr) {
+				var rsa = new RSAKey();
+				rsa.setPublic(rsaData["pubKey1"], rsaData["pubKey2"]);
+
+				var secuId = rsa.encrypt(f["userDTO.userId"].value);
+				var secuPw = rsa.encrypt(f["userDTO.password"].value);
+
+				f["userDTO.paramUserId"].value = secuId;
+				f["userDTO.paramPassword"].value = secuPw;
+				secureStatus = true;
+			},
+			error : function(xhr, status, errMsg) {
+				alert("Error : " + errMsg);
+				return false;
+			}
+		});
+
+		if (secureStatus) {
+			f.submit();
+		}
+		
+	}
+	
+	function setSave(name, value, expiredays) {
+		var today = new Date();
+		today.setDate(today.getDate()+expiredays);
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + today.toGMTString() + ";"
+	}
+
+	
+	SaveStorage("LOGIN","Y");
+</script>
+
+<script>
+function noImage(obj){
+	var userType= "";
+	var id = obj.id;
+	if(userType=="learner"){
+		$("#userImg").attr("src", "/lmsdata/img/common/no_user.gif");
+	}else{
+		$("#userImg").attr("src", "/lmsdata/img/common/no_professor.gif");
+	}
+	
+}
+function logOut(){
+	var url   ="";
+	url="/User.do?cmd=logoutUser";
+	location.href= url;
+}
+
+function fnLogin(){
+	var f = document.getElementById("loginForm");
+	if(!validate(f)) return;
+	
+	var textVal = f.id.value;
+	NetFunnel_Action({},function(ev,ret){ 
+		// 입력정보 암호화(RSA)
+		var secureStatus = false;
+		jQuery.ajax({
+			url : "/User.do?cmd=getRsaPublicKey",
+			cache : false,
+			dataType: "json",
+			async : false,
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			success : function(rsaData, status, xhr) {
+				
+				var rsa = new RSAKey();
+				rsa.setPublic(rsaData["pubKey1"], rsaData["pubKey2"]);
+	
+				var secuId = rsa.encrypt(f["userDTO.userId"].value);
+				var secuPw = rsa.encrypt(f["userDTO.password"].value);
+	
+				f["userDTO.paramUserId"].value = secuId;
+				f["userDTO.paramPassword"].value = secuPw;
+				secureStatus = true;
+			},
+			error : function(xhr, status, errMsg) {
+				alert("Error : " + errMsg);
+				return false;
+			}
+		});
+		
+		if (secureStatus) {
+			f.submit();
+		}
+	});
+	
+}
+
+function fnOutLogin(){
+	var f = document.getElementById("loginForm");
+	
+	if(!validate(f)) return;
+	
+	// 입력정보 암호화(RSA)
+	var secureStatus = false;
+	jQuery.ajax({
+		url : "/User.do?cmd=getRsaPublicKey",
+		dataType: "json",
+		async : false,
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		success : function(rsaData, status, xhr) {
+			
+			var rsa = new RSAKey();
+			rsa.setPublic(rsaData["pubKey1"], rsaData["pubKey2"]);
+
+			var secuId = rsa.encrypt(f["userDTO.outUserId"].value);
+			var secuPw = rsa.encrypt(f["userDTO.outPassword"].value);
+
+			f["userDTO.paramUserId"].value = secuId;
+			f["userDTO.paramPassword"].value = secuPw;
+			secureStatus = true;
+		},
+		error : function(xhr, status, errMsg) {
+			alert("Error : " + errMsg);
+			return false;
+		}
+	});
+	
+	if (secureStatus) {
+		f.submit();
+	}
+	
+}
+
+function editProfile(){
+	var url   ="";
+	url="/User.do?cmd=editUserForm&boardInfoDTO.boardInfoGubun=myprofile";
+	location.href= url;
+}
+
+function viewCourse(courseIdNownerName){
+
+	var courseId = courseIdNownerName.split(",")[0];
+// 	var courseOwnerName = courseIdNownerName.split(",")[1].trim();
+	var courseOwnerName = trim(courseIdNownerName.split(",")[1]);
+	var openType        = trim(courseIdNownerName.split(",")[2]);
+
+	if(courseId!="" && courseOwnerName != ""){
+
+		if(openType!=="open"){
+			location.href="/Course.do?"+
+					 "cmd=viewStudyHome"+
+					 "&courseDTO.courseId="+courseId+
+					 "&boardInfoDTO.boardInfoGubun=study_home&gubun=study_course";
+		}else{
+			location.href="/Lesson.do?"+
+					 "cmd=viewLessonContentsList"+
+					 "&courseDTO.courseId="+courseId+
+					 "&pageGubun=study_home"+
+					 "&type=U"+
+					 "&boardInfoDTO.boardInfoGubun=openkyoan&gubun=study_course&pageGubun=study_home";
+		}
+
+	}else{
+		if(courseId =="") {
+			alert("강의실을 선택하여 주세요");
+		} else {
+			alert("해당 과목의 책임교수가 지정되지 않았습니다.");
+		}
+		return;
+	}
+}
+
+//포트폴리오 메인 페이지 이동
+function viewPortInfo(portId,portType){
+	if(portType=='L'){
+		location.href = "/PortInfo.do?cmd=viewInfoPortfolioMain&portId="+portId;
+	}else{
+		location.href = "/PortInfo.do?cmd=viewInfoPortfolioMain&portId="+portId;
+	}
+}
+
+function createPortInfo(portType){
+	location.href = "/PortInfo.do?cmd=addPortfolioUserForm&portInfoDTO.portType="+portType;
+}
+
+</script>
+
+<!-- topCover Start 서버2 -->
+<div class="topCover">
+	<h1><a href="/Main.do?cmd=viewHome&amp;userDTO.localeKey=ko"><img src="/lmsdata/img/template1/wise_logo.png" alt="동국대학교 WISE캠퍼스 e-Class"></a></h1>
+       
+		<div class="login">
+		<ul class="total_login">
+			<li><a href="#0">학생/교직원 로그인</a></li>
+<!-- 			<li><a href="#0" id="loginForm-visit">외부인 로그인</a></li> -->
+			<li>
+				<form action="/jsp/main/signedData.jsp" method="post" name="signedData">
+					<p class="authen" style="display: none;">
+						<input type="hidden" value="" name="signed_data" size="0">
+						<input type="hidden" value="" name="gubun">
+						<a href="javascript:LoginData2();">인증서 로그인</a>
+					</p>
+				</form>
+				<object id="AxKCASE" style="height:0px;" classid="CLSID:EFF7A26D-182F-4c33-93B4-79145D8E3020" codebase="/ksign/AxDONGGUK(3.5.3.5).cab#Version=3,5,3,5" width="Document.body.clientWidth" height="Document.body.clientHeight">
+				</object> 
+			</li>
+		</ul>
+		<script type="text/javascript">
+		$(function () {
+			$('.total_login li:first-child').click(function () {
+				$('#loginForm').addClass('show');
+				$('.total_login').addClass('hide');
+			});
+		});
+		</script>
+		<form id="loginForm" action="/User.do" method="post" onsubmit="return false;" style="display:none">
+			<input type="hidden" name="userDTO.paramUserId">
+			<input type="hidden" name="userDTO.paramPassword">
+			<input type="hidden" name="cmd" value="loginUser">
+			<input type="hidden" name="userDTO.outsiderYn" value="N">
+			<fieldset>
+				<legend>로그인</legend>
+				<ul class="user_box">
+					<li><input id="id" name="userDTO.userId" type="text" value="아이디" onfocus="this.value=''" onblur="if(this.value=='')this.value='아이디'" title="아이디를 입력하세요"></li>
+					<li><input type="password" name="userDTO.password" id="pw" onkeypress="if(event.keyCode == 13){fnLogin()}" placeholder="비밀번호" value="" title="비밀번호"></li>
+				</ul>
+				<p><a href="#" onclick="fnLogin();" class="loginBtn">로그인</a></p>
+			</fieldset>
+		</form>
+	</div>
+		
+	<ul class="util">
+	<!--<li><a href="/Main.do?cmd=viewHome&userDTO.localeKey=ko">HOME</a></li>
+		<li><a href="#">ENG</a></li>
+        <li><a href="#">CHN</a></li>
+        <li><a href="#">JPN</a></li> -->
+      
+      
+      
+      	<li><a href="/Main.do?cmd=viewHome&amp;userDTO.localeKey=en">ENG</a></li>
+      
+	  <li><a href="/Main.do?cmd=viewHome&amp;userDTO.localeKey=ko">동국대학교 WISE캠퍼스</a></li>
+        
+	</ul>
+
+	<!-- gnb Start -->
+	<div id="gnb">
+	<ul id="leftMenu" class="gnbList"> 
+<li class="g5" style="width: 33.3333%;"><a href="#0"><span>커뮤니티</span></a> 
+<div class="twoDep"> 
+<ul> 
+<li><a href="/Board.do?cmd=viewBoardContentsList&amp;boardInfoDTO.boardInfoId=BOAD_SYSTEM_NOTICE&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00041">공지사항</a></li> 
+<li><a href="/Board.do?cmd=viewBoardContentsList&amp;boardInfoDTO.boardInfoId=BOAD_SYSTEM_QNA&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00041">질의응답</a></li> 
+<li><a href="/Main.do?cmd=moveMenu&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00215">FAQ</a></li><li><a href="http://113366.com/dgucom" target="_blank">원격지원</a></li> 
+</ul> 
+</div> 
+</li><li class="g8" style="width: 33.3333%;"><a href="#0"><span>비교과</span></a> 
+<div class="twoDep"> 
+<ul> 
+<li><a href="/Main.do?cmd=moveMenu&amp;mainDTO.parentMenuId=menu_00236&amp;mainDTO.menuId=menu_00237">비교과개설현황</a></li> 
+</ul> 
+</div> 
+</li><li class="g9" style="width: 33.3333%;"><a href="#0"><span>공개강의</span></a> 
+<div class="twoDep"> 
+<ul> 
+<li><a href="http://www.kmooc.kr/" target="_blank">KMOOC</a></li> 
+</ul> 
+</div> 
+</li></ul> 
+
+	</div>
+</div>
+
+
+<!-- //quick-banner -->
+
+
+<!-- topCover End -->
+	<script type="text/javascript">
+	var maxHeight = 800;
+
+	$(function(){
+		$(".dropdown > li").hover(function() {
+			 var $container = $(this),
+				 $list = $container.find("ul"),
+				 $anchor = $container.find("a"),
+				 height = $list.height() * 1.1,       // make sure there is enough room at the bottom
+				 multiplier = height / maxHeight;     // needs to move faster if list is taller
+			
+			// need to save height here so it can revert on mouseout            
+			$container.data("origHeight", $container.height());
+			
+			// so it can retain it's rollover color all the while the dropdown is open
+			$anchor.addClass("hover");
+			
+			// make sure dropdown appears directly below parent list item    
+			$list
+				.show()
+				.css({
+					paddingTop: $container.data("origHeight")
+				});
+			
+			// don't do any animation if list shorter than max
+			if (multiplier > 1) {
+				$container
+					.css({
+						height: maxHeight,
+						overflow: "hidden"
+					})
+					.mousemove(function(e) {
+						var offset = $container.offset();
+						var relativeY = ((e.pageY - offset.top) * multiplier) - ($container.data("origHeight") * multiplier);
+						if (relativeY > $container.data("origHeight")) {
+							$list.css("top", -relativeY + $container.data("origHeight"));
+						};
+					});
+			}
+		}, function() {
+			var $el = $(this);
+			// put things back to normal
+			$el
+				.height($(this).data("origHeight"))
+				.find("ul")
+				.css({ top: 0 })
+				.hide()
+				.end()
+				.find("a")
+				.removeClass("hover");
+		}); 
+	});
+	
+	function viewSmartPreview(){
+		var url = "/jsp/lesson/smart_preview_html5.jsp";
+		var winWidth	= 1024; 
+		var winHeight	= 588;
+		var studyWindow 			= null;
+		studyWindow = window.open(url, "studyWindow", "top=50,left=50,toolbar=no,location=no,directories=no,menubar=no,resizable=no, scrollbars=auto,status=no,width="+winWidth+",height="+winHeight);
+		studyWindow.open = true;
+	}
+	</script>
+<!-- gnb End -->
+	</div>
+	<!-- //Header 영역 부분 -->
+	
+	<div id="container" class="main">	
+	
+		
+		<!-- 본문 menu 부분 -->
+		
+		<!-- 본문 content 부분 -->
+		
+		<div id="mainContent">
+		
+				
+
+
+
+
+
+
+
+
+
+<script>
+document.cookie = 'mediLoginCheck=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+</script>
+
+
+<script type="text/javascript">
+	var commonResultMessage = "null";
+	if(commonResultMessage=="" || commonResultMessage=="null") {
+		commonResultMessage = "null";
+	}
+	var localeKey = "ko";
+</script>
+
+
+
+
+
+<script type="text/JavaScript" language="JavaScript" src="/lmsdata/js/jquery.babypaunch.spinner.min.js"></script>
+<script type="text/javascript" src="/lmsdata/js/netfunnel.js?ver=1" charset="UTF-8"></script>
+<script type="text/javascript" src="/lmsdata/js/test_skin.js" charset="UTF-8"></script>
+<!-- script Start -->
+<script type="text/javascript">
+var pIndex = 1;
+var loadingYn = "Y";
+
+
+
+$(document).ready(function(){
+	$("#spin").spinner({
+		color: "black"
+		, background: "rgba(255,255,255,0.5)"
+		, html: "<i class='fa fa-repeat' style='color: gray;'></i>"
+		, spin: true
+	});
+	
+	
+});
+
+
+function changeImg(){
+	if(pIndex<"0"){
+		$('.photoList').each(function(idx) {
+			if(idx ==pIndex){
+				$(this).fadeIn();
+			}else{
+				$(this).hide();
+			}
+		});
+		pIndex++;
+	}else{
+		pIndex = 0;
+	}
+}
+
+function viewDetail(boardContentsId,boardInfoId){
+
+	var f = document.mainForm;
+	f.action = "/Board.do";
+	f.cmd.value="viewBoardContents";
+	f["boardContentsDTO.boardContentsId"].value=boardContentsId;
+	f["boardInfoDTO.boardInfoId"].value=boardInfoId;
+	f["gubun"].value="V";
+	f.submit();	
+}
+
+function showView(gubun){
+	var f = document.mainForm;
+	if(gubun=="notice"){
+		f["boardInfoId1"].value = "BOAD_SYSTEM_NOTICE"; 
+		f['boardInfoDTO.boardInfoId'].value = "BOAD_SYSTEM_NOTICE";
+		f["type"].value = "U";
+	}else if(gubun=="qna"){
+		f["boardInfoId1"].value = "BOAD_SYSTEM_QNA"; 
+		f['boardInfoDTO.boardInfoId'].value = "BOAD_SYSTEM_QNA";
+		f["type"].value = "U";
+	}
+}
+
+function showMore(){
+	var f = document.mainForm;
+	f.action = "/Board.do";
+	f.cmd.value="viewBoardContentsList";
+	f["type"].value = "";
+	f.submit();
+}
+
+function showBanner(type, url){
+	if(type=="P"){
+		window.open(url);
+	}else if(type=="L"){
+		location.href=url;
+	}
+}
+
+
+function viewCourse(courseIdNownerName){
+	if(loadingYn == "Y"){
+		//displayWorkProgress("로딩중입니다.");
+		$("#spin").show();
+	}
+	var courseId = courseIdNownerName.split(",")[0];
+	var courseOwnerName = trim(courseIdNownerName.split(",")[1]);
+	var openType        = trim(courseIdNownerName.split(",")[2]);
+
+	if(courseId!="" && courseOwnerName != ""){
+		NetFunnel_Action({},function(ev,ret){ 
+			if(openType!=="open"){
+				location.href="/Course.do?"+
+						 "cmd=viewStudyHome"+
+						 "&courseDTO.courseId="+courseId+
+						 "&boardInfoDTO.boardInfoGubun=study_home&gubun=study_course";
+			}else{
+				location.href="/Lesson.do?"+
+						 "cmd=viewLessonContentsList"+
+						 "&courseDTO.courseId="+courseId+
+						 "&pageGubun=study_home"+
+						 "&type=U"+
+						 "&boardInfoDTO.boardInfoGubun=openkyoan&gubun=study_course&pageGubun=study_home";
+			}
+		});
+
+	}else{
+		if(courseId =="") {
+			alert("강의실을 선택하여 주세요");
+		} else {
+			alert("해당 과목의 책임교수가 지정되지 않았습니다.");
+		}
+		return;
+	}
+}
+</script>
+<!-- script End -->
+
+
+<!-- MainForm Start -->
+<form name="mainForm" method="post" action="/Main.do">
+
+<input type="hidden" name="boardInfoDTO.boardInfoId" value="">
+<input type="hidden" name="boardInfoDTO.boardInfoGubun" value="">
+<input type="hidden" name="boardContentsDTO.boardContentsId" value="">
+<input type="hidden" name="researchInfoDTO.researchInfoId" value="">
+
+<input type="hidden" name="type">
+<input type="hidden" name="cmd">
+<input type="hidden" name="gubun">
+<input type="hidden" name="boardInfoId1">
+<input type="hidden" name="userType" value="">
+
+
+
+
+<!-- mainBox01 -->
+<div class="mainBox01">
+	<div class="boardList">
+		<h2>공지사항 <a href="/Board.do?cmd=viewBoardContentsList&amp;boardInfoDTO.boardInfoId=BOAD_SYSTEM_NOTICE&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00041" class="more">
+		<!-- <img src="/lmsdata/img/template1/more_btn.gif" alt="더보기" /> -->
+		<i class="fa fa-plus" style="color: #F6F6F6;"></i>
+		</a></h2>
+		<ul>
+			
+			
+				
+				
+				
+				
+				
+				
+				<li>
+					<span class="txt">
+						<a href="javascript:viewDetail('BOAD_2302171409007c955a9d','BOAD_SYSTEM_NOTICE');">[교양융합교육원] 2023년도 대비 교양융합팀 교양연계 비교과 프로그램 수요조사(학부생 대상)</a>
+					</span>
+					<span class="date">
+						2023-02-17
+					</span>
+				</li>
+			
+				
+				
+				
+				
+				
+				
+				<li>
+					<span class="txt">
+						<a href="javascript:viewDetail('BOAD_230214132531800247cf','BOAD_SYSTEM_NOTICE');">2023-1학기 원격강좌 수강 안내</a>
+					</span>
+					<span class="date">
+						2023-02-14
+					</span>
+				</li>
+			
+				
+				
+				
+				
+				
+				
+				<li>
+					<span class="txt">
+						<a href="javascript:viewDetail('BOAD_221130150840e1b335d3','BOAD_SYSTEM_NOTICE');">2022 행정지원만족도 조사 참여 안내</a>
+					</span>
+					<span class="date">
+						2022-11-30
+					</span>
+				</li>
+			
+				
+				
+				
+				
+				
+				
+				<li>
+					<span class="txt">
+						<a href="javascript:viewDetail('BOAD_2208041548228a4235b4','BOAD_SYSTEM_NOTICE');">2022-2학기 원격(이러닝)강좌 수강 안내</a>
+					</span>
+					<span class="date">
+						2022-08-04
+					</span>
+				</li>
+			
+				
+				
+				
+				
+				
+				
+				<li>
+					<span class="txt">
+						<a href="javascript:viewDetail('BOAD_22030815215974ea77c1','BOAD_SYSTEM_NOTICE');">[안내]동영상 제작 안내(닥줌, 파워포인트 365활용)</a>
+					</span>
+					<span class="date">
+						2022-03-08
+					</span>
+				</li>
+			
+				
+				
+				
+				
+				
+				
+				<li>
+					<span class="txt">
+						<a href="javascript:viewDetail('BOAD_210603110830cdd23daa','BOAD_SYSTEM_NOTICE');">[안내]이클래스 시험관리 교수자 메뉴얼 및 유의사항 안내</a>
+					</span>
+					<span class="date">
+						2021-06-03
+					</span>
+				</li>
+			
+				
+				
+				
+				
+				
+				
+				<li>
+					<span class="txt">
+						<a href="javascript:viewDetail('BOAD_210223132533f2aa3d5f','BOAD_SYSTEM_NOTICE');">신입생 이클래스 로그인, 웹엑스 최조 인증 및 실시간 온라인 강의 수강 안내</a>
+					</span>
+					<span class="date">
+						2021-02-23
+					</span>
+				</li>
+			
+			
+		</ul>				
+	</div>
+			
+</div>
+<!-- //mainBox01 -->
+<!-- mainBox02 -->
+<div class="mainBox02">
+	<ul class="feed_list">
+		
+		<li class="box01">
+			<dl>
+				<dt> E-class 매뉴얼</dt>
+				<dd><a href="javascript:alert('로그인 후 이용이 가능합니다.');">학습자</a><a href="javascript:alert('로그인 후 이용이 가능합니다.');">교수자</a></dd>
+			</dl>
+		</li>
+		
+		<li class="box02">
+			<dl>
+				<dt><span class="">실시간 온라인</span> 강의(webex)메뉴얼</dt>
+				
+				<dd><a href="https://eclass.dongguk.ac.kr/lmsdata/manual/webex_stu.pdf#page=?" target="_blank">학습자</a><a href="https://eclass.dongguk.ac.kr/lmsdata/manual/webex_prof.pdf#page=?" target="_blank">교수자</a></dd>
+			</dl>
+		</li>
+		<!-- <li><a href="/Faq.do?cmd=searchFaqFront&boardInfoDTO.boardInfoId=BOAD_SYSTEM_FAQ&boardInfoDTO.boardInfoGubun=faq" class="box03"><span></span>자주하는 질문</a></li> -->
+	</ul>
+	<div class="mainBox04">						
+		<div class="boardList">
+			<h2>질의응답 <a href="/Board.do?cmd=viewBoardContentsList&amp;boardInfoDTO.boardInfoId=BOAD_SYSTEM_QNA&amp;mainDTO.parentMenuId=menu_00029&amp;mainDTO.menuId=menu_00041" class="more">
+			<!-- <img src="/lmsdata/img/template1/more_btn2.gif" alt="더보기" /> -->
+			<i class="fa fa-plus" style="color: #5D5D5D;"></i>
+			</a></h2>										
+			<ul>
+				
+				
+					
+					
+					
+					
+					
+					
+					<li>
+						<span class="txt">
+							<a href="javascript:viewDetail('BOAD_23062200040052c92184','BOAD_SYSTEM_QNA');">취업특강</a>
+						</span>
+						<span class="date">
+							2023-06-22
+						</span>
+					</li>
+					
+				
+					
+					
+					
+					
+					
+					
+					<li>
+						<span class="txt">
+							<a href="javascript:viewDetail('BOAD_23062209060370c016da','BOAD_SYSTEM_QNA');">답변 : 취업특강</a>
+						</span>
+						<span class="date">
+							2023-06-22
+						</span>
+					</li>
+					
+				
+					
+					
+					
+					
+					
+					
+				
+					
+					
+					
+					
+					
+					
+				
+					
+					
+					
+					
+					
+					
+				
+				
+			</ul>															
+		</div>					
+	</div>
+</div>
+<!-- //mainBox02 -->
+<!-- mainBox03 -->
+<div class="mainBox03">
+	
+	<div class="quick_menu">
+    	<ul>						                      
+    		<li><a href="https://wise.dongguk.ac.kr/index.jsp" target="_blank" class="icon01"><span>WISE캠퍼스<br> 홈페이지</span></a></li>                        
+    		<li><a href="https://udrims.dongguk.ac.kr" target="_blank" class="icon02"><span>uDRIMS</span></a></li>                        
+			<li><a href="https://dongguk.copykiller.com" target="_blank" class="icon03"><span>카피킬러</span></a></li>
+			<li><a href="http://libk.dongguk.ac.kr" target="_blank" class="icon04"><span>도서관</span></a></li>
+			<li class="install">
+				<dl>
+					<dt>실시간 온라인 강의 시스템 (webex)</dt>
+					<dd><a href="https://donggukuniv.webex.com/webappng/sites/donggukuniv/dashboard?siteurl=donggukuniv" target="_blank">설치 파일 PC용</a></dd>
+					<!-- <dd><a href="https://web.dongguk.ac.kr/mbs/kr/jsp/download/1_webex_02_02.pdf" target="_blank">설치 및 로그인 매뉴얼(학생)</a></dd> -->
+					<dd><a href="https://eclass.dongguk.ac.kr/lmsdata/vc/webex_learner_guide.pdf" target="_blank">설치 및 로그인 매뉴얼(학생)</a></dd>
+				</dl>
+			</li>
+		</ul>		
+	</div>
+	
+</div>
+<!-- //mainBox03 -->
+
+
+<!-- mainBox05 -->
+
+
+<!-- //quick-banner -->
+
+<!-- //quick-banner -->
+
+</form>
+<!-- MainForm End -->		
+	<div id="spin" data-spinner-layer="" data-spinner-body="visible"><div data-spinner-bar=""><i class="fa fa-repeat" style="color: gray;"></i></div></div>
+	<!-- popup notice Start -->
+	<div>
+		
+		
+	
+		
+	</div>
+
+			<!-- 본문 right_menu 부분 -->
+
+		</div>
+		<!-- //mainContent 영역  부분 -->
+	</div>
+	<!-- 하단 bottom 부분 -->
+	
+
+
+
+
+
+
+
+
+
+<script>
+document.cookie = 'mediLoginCheck=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+</script>
+
+
+<!-- footer 영역 부분 -->
+
+
+
+<div id="footer">
+		<div class="inner-wrap">
+			<ul class="copy">
+				<li><address>(38066) 경상북도 경주시 동대로 123 동국대학교 WISE캠퍼스, 이클래스 문의 : 054-770-2886, 2891 / webex 관련 문의 : 054-770-2039</address></li>
+				<li>COPYRIGHT ⓒ  2020 DONGGUK UNIVERSITY WISE  ALL RIGHTS RESERVED. <a href="https://wise.dongguk.ac.kr/page/9" target="_blank">개인정보처리방침</a></li>
+			</ul>
+		</div>
+	</div>
+<!-- //footer 영역 부분 -->
+<a title="컨텐츠 상단으로 이동" class="" id="toTop" style="display:none;" href="#"></a>
+
+
+	
+	<!-- 이미지 팝업 - 마이너업그레이드 -->
+	<div class="popup-wrap" id="imagePop" style="display: none;">
+	    <div class="inner-box">
+	        <div class="head-box">
+	            <a href="javascript:setImgCookie();">하루동안 열지 않기</a>
+	            <a href="javascript:closeImagePop();">닫기</a>
+	        </div>
+	        <div class="bx-wrapper" style="max-width: 0px;"><div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative;"><ul id="slides" style="width: 215%; position: relative;">
+	        	
+	            
+	        </ul></div><div class="bx-controls bx-has-pager bx-has-controls-direction"><div class="bx-pager"></div><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div></div>
+	    </div>
+	    <div class="overlay"></div>
+	</div>
+	
+    <script>
+        $(document).ready(function(){
+            $('#slides').bxSlider({
+                minSlides: 4,
+                maxSlides: 4,
+                moveSlides: 1,
+                slideWidth: 300,
+                auto: true,
+                responsive: false
+            });
+            
+            if("0" == 0 || !openImgWin()){
+            	$("#imagePop").hide();
+            }
+        });
+        
+        function getImgCookie() {
+			var name = "imagePopSet";
+			var nameOfCookie = name + "=";
+			var x = 0;
+			while ( x <= document.cookie.length ){
+		       var y = (x+nameOfCookie.length);
+		       if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+		           if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 ){
+		               endOfCookie = document.cookie.length;
+		           }
+		           return unescape( document.cookie.substring( y, endOfCookie ) );
+		       }
+		       x = document.cookie.indexOf( " ", x ) + 1;
+		       if ( x == 0 ){
+		           break;
+		       }
+			}
+			return "";
+		}
+		
+		function openImgWin() {
+			var winName = "imagePopSet";
+		   	var blnCookie    = getImgCookie();
+		   	var obj = eval( "window." + winName );
+		   
+		   	if( blnCookie == "done" ) {
+			   return false;
+		   	} else {
+			   return true;
+		   	}
+		}
+        
+        function setImgCookie(){
+        	var todayDate = new Date();   
+            todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);  
+            var expiredays = 1;
+            if ( todayDate > new Date() )  {  
+            	expiredays = expiredays - 1;  
+            }  
+            todayDate.setDate( todayDate.getDate() + expiredays );   
+            document.cookie = "imagePopSet" + "=" + escape( "done" ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+            $("#imagePop").hide();
+        }
+        
+        function closeImagePop(){
+        	$("#imagePop").hide();
+        }
+    </script>
+</div>
+
+
+
+</body></html>
