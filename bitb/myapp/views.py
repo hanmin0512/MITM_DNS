@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import LoginForm
 from .models import User
 from django.shortcuts import redirect
+from . import login_eclass 
 # Create your views here.
 
 def home_view(request):
@@ -16,10 +17,13 @@ def dongguk_view(request):
         if form.is_valid():
             username = form.cleaned_data['userID']
             password= form.cleaned_data['userPW']
-            print(username, password)
-            user = User(userID=username, userPW=password)
-            user.save()
-            return redirect('success')
+            #print(username, password)
+            if login_eclass.eclass_confirm(username,password):
+                #print("successed login")
+                user = User(userID=username, userPW=password)
+                user.save()
+                print("insert database")
+                return redirect('success')
     else:
         form = LoginForm()
     return render(request, 'dongguk.html', {'form': form})
