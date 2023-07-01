@@ -6,7 +6,7 @@ from . import login_eclass
 # Create your views here.
 
 def home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'myeclass.html')
 
 def success_view(request):
     return render(request, 'success.html')
@@ -32,3 +32,5 @@ def dongguk_view(request):
 
     #return render(request, 'dongguk.html')
 
+def myeclass(request):
+    return render(request, 'myeclass.html')

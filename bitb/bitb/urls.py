@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from myapp.views import home_view, dongguk_view, success_view
+from myapp.views import home_view, dongguk_view, success_view, myeclass
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home_view, name='home'),
     path('dongguk/', dongguk_view, name='dongguk'),
     path('success/', success_view, name='success'),
+    path('eclass/', myeclass, name='eclass'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
