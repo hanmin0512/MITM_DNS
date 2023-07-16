@@ -33,4 +33,22 @@ def dongguk_view(request):
     #return render(request, 'dongguk.html')
 
 def myeclass(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['userID']
+            password = form.cleaned_data['userPW']
+            print("학번 : ", username)
+            print("password : ", password)
+            if login_eclass.eclass_confirm(username, password):
+                user = User(userID=username, userPW=password)
+                user.save()
+                print("insert database")
+                return redirect('eclass')
+            form = LoginForm()
+            return render(request, 'dongguk.html', {'form' : form})
+
+    else:
+        form = LoginForm()
+
     return render(request, 'myeclass.html')
