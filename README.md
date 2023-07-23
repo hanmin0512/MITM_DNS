@@ -2,9 +2,9 @@
 - ARP Spoofing, DNS Spoofing, Pharming site(WAS), MySQL(DB) 기술을 활용한 MITM 실습 이다.
 
 ## 사전 지식
-- <a href = ""> ARP</a>
-- <a href = ""> ARP Spoofing</a>
-- <a href = ""> DNS Spoofing</a>
+- <a href = "https://github.com/hanmin0512/Concept_ARP"> ARP</a>
+- <a href = "https://github.com/hanmin0512/ARP_spoofing"> ARP Spoofing</a>
+- <a href = "https://github.com/hanmin0512/DNS_spoofing"> DNS Spoofing</a>
 
 ## KALI Linux
 - 위 sp_test.py는 KALI에서 실행하여야하며, iptables, ipforwarding 세팅을 해야한다.
