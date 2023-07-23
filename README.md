@@ -6,6 +6,9 @@
 - <a href = ""> ARP Spoofing</a>
 - <a href = ""> DNS Spoofing</a>
 
+## KALI Linux
+- 위 sp_test.py는 KALI에서 실행하여야하며, iptables, ipforwarding 세팅을 해야한다.
+- ARP_spoofing은 KALI arpspoof 툴을 사용한다.
 
 ## 개발 환경
 - malicious : KALI Linux
