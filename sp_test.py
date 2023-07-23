@@ -3,11 +3,11 @@ from netfilterqueue import NetfilterQueue
 import os
 
 dns_hosts = {
-    b"www.google.com.": "3.39.157.82",
-    b"google.com.": "3.39.157.82",
-    b"www.eclass.dongguk.ac.kr." : "3.39.157.82",
-    b"eclass.dongguk.ac.kr." : "3.39.157.82",
-    b"eclass" : "3.39.157.82",
+    b"www.google.com.": "[Your WAS IP]",
+    b"google.com.": "[Your WAS IP]",
+    b"www.eclass.dongguk.ac.kr." : "[Your WAS IP]",
+    b"eclass.dongguk.ac.kr." : "[Your WAS IP]",
+    b"eclass" : "[Your WAS IP]",
 }
 
 def process_packet(packet):
@@ -46,9 +46,6 @@ def modify_packet(packet):
     return packet
 
 QUEUE_NUM = 0
-
-#os.system("iptables -I FORWARD -j NFQUEUE --queue-num {}".format(QUEUE_NUM))
-#print("iptables -I FORWARD -j NFQUEUE --queue-num {}".format(QUEUE_NUM))
 
 queue = NetfilterQueue()
 print("created NetfilterQueue")
